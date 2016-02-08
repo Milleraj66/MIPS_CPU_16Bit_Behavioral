@@ -23,8 +23,8 @@
 module ALU(Opcode,InputA,InputB,BNE_Flag,Output);
     input [2:0] Opcode;
     input [15:0] InputA,InputB;
-    input BranchFlag;
-    output [15:0] Output;
+    output reg BNE_Flag;
+    output reg [15:0] Output;
     
     always @(InputA or InputB or Opcode)
     begin

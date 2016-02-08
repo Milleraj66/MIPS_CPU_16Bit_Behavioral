@@ -26,6 +26,7 @@ module RegisterFile(Clk,Clear,Write,Aaddr,Baddr,Caddr,DataIn,Aout,Bout);
     input [3:0] Aaddr,Baddr,Caddr;
     input [15:0] DataIn;
     output reg [15:0] Aout,Bout;
+    integer i;
     
     // Register File [Width] Reg [Depth]
     reg [15:0] RegFile [15:0];
@@ -36,7 +37,13 @@ module RegisterFile(Clk,Clear,Write,Aaddr,Baddr,Caddr,DataIn,Aout,Bout);
         Aout = RegFile[Aaddr];
         Bout = RegFile[Baddr];
         // Clear Registers
-        if (Clear) RegFile = 4'h0000;
+        if (Clear) 
+        begin
+            for (i=0;i<16;i = i+1)
+            begin
+                RegFile[i] = 4'h0000;
+            end
+        end
         // Write to register
         else if (Write) 
         begin

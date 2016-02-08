@@ -11,10 +11,14 @@
 module Datapath(Clk,Reset);
     input Clk;
     input Reset;
-    wire [15:0] PC,PC_Next;
-    wire [15:0] Inst,Aout,BoutALU_Out,Data_Out,Offset;
+    wire [15:0] PC_Next;
+    wire [15:0] Inst,Aout,Bout,ALU_Out,Data_Out,Offset;
     wire BNE_Flag;
-    wire [3:0] Control;
+    wire [10:0] Control;
+    reg [3:0] Caddr;
+    reg [15:0] ALUsrc_Out,MemToReg_Out,PC_Branch_Out;
+    reg [15:0] PC;
+    
     
     // 4 bit Control Unit
     ControlUnit                 CU_UUT      (

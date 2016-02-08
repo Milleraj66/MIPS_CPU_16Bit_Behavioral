@@ -13,7 +13,6 @@ module DataMemory(Clk,Addr,Write,Data_In,Data_Out);
     input Write;
     input [15:0] Data_In;
     output reg [15:0] Data_Out;
-    reg [15:0] Data_Out;
     reg [15:0] my_memory [0:63]; // Memory Width: 16bits, Memory Depth: 0 to 63?
     
     // Intial Data Memory Values for Program

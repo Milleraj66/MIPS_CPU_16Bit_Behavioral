@@ -19,7 +19,6 @@ module InstructionMemory (Clk,Addr,Data_Out);
     input Clk;
     input [15:0] Addr;
     output reg [15:0] Data_Out;
-    reg [15:0] Data_Out;
     reg [15:0] my_memory [0:63]; // Memory Width: 16bits, Memory Depth: 0 to 2^15-1?
 
     initial
