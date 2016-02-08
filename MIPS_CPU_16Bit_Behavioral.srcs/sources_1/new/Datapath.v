@@ -3,12 +3,13 @@
 // Author: Arthur J. Miller
 // Create Date: 02/05/2016 04:11:32 PM
 // UPDATE: AJM 02/06/2016 : Finish wiring datapath
+// UPDATE: AJM 02/07/2016 : Include outputs and driver
 // Module Name: Datapath
 // Purpose: 16bit MIPS Cpu w/ Behavioarl design (exact copy of ECE425L)
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Datapath(Clk,Reset);
+module Datapath(Clk,Reset,PC_4bit,Ins_4bit,ALU_Out_4bit,Mem_Out_4bit);
     input Clk;
     input Reset;
     wire [15:0] PC_Next;
@@ -18,7 +19,15 @@ module Datapath(Clk,Reset);
     reg [3:0] Caddr;
     reg [15:0] ALUsrc_Out,MemToReg_Out,PC_Branch_Out;
     reg [15:0] PC;
-    
+    // **** Outputs to be used as LED's
+    output wire [3:0] PC_4bit;          // First four bits of PC
+    assign PC_4bit = PC[3:0];
+    output wire [3:0] Ins_4bit;         // Last four bits of Instruction (the opcode)
+    assign Ins_4bit = Inst[15:12];
+    output wire [3:0] ALU_Out_4bit;     // First four bits of ALU_Out
+    assign ALU_Out_4bit = ALU_Out[3:0]; 
+    output wire [3:0] Mem_Out_4bit;     // First four bits of Memory Output
+    assign Mem_Out_4bit = Data_Out[3:0]; 
     
     // 4 bit Control Unit
     ControlUnit                 CU_UUT      (
